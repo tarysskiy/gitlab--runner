@@ -1,0 +1,10 @@
+---
+
+gitlab_runner_url: "https://s3.amazonaws.com/gitlab-runner-downloads/master/rpm/gitlab-runner_amd64.rpm"
+
+gitlab_runner_conf:
+- src: "config.toml.j2"
+  dest: "/etc/gitlab-runner/config.toml"
+  owner: root
+  group: root
+  mode: "600"

@@ -1,0 +1,22 @@
+---
+
+- name: "Install gitlab-runner"
+  yum:
+    name: "{{ gitlab_runner_url }}"
+    state: present
+    validate_certs: false    
+
+- name: "Copy gitlab-runner config"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{item.mode }}"
+  loop: "{{ gitlab_runner_conf }}"  
+      
+- name: "Restarted gitlab-runner.service"
+  service:
+    name: gitlab-runner
+    state: restarted
+    enabled: yes
